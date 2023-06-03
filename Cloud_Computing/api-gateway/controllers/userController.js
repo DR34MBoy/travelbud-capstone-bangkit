@@ -1,7 +1,7 @@
 'use strict';
 
 const firebase = require('../db');
-const Tourism_place = require('../models/users');
+const Tourism_place = require('../models/user');
 const firestore = firebase.firestore();
 
 const getAllPlaces = async (req, res, next) => { // ini diubah ya ca

@@ -1,4 +1,4 @@
-class Users {
+class User {
     constructor(User_Id, Location, Age) {
             this.User_Id = User_Id;
             this.Location = Location;
@@ -6,4 +6,4 @@ class Users {
     }
 }
 
-module.exports = Users;
+module.exports = User;
