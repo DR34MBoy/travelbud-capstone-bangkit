@@ -24,13 +24,16 @@ const getAllPlaces = async (req, res, next) => {
         }else {
             data.forEach(doc => {
                 const tourism_place = new Tourism_place(
-                    doc.data().placeID,
-                    doc.data().placeName,
-                    doc.data().description,
-                    doc.data().category,
-                    doc.data().city,
-                    doc.data().price,
-                    doc.data().rating,
+                    doc.data().Place_ID,
+                    doc.data().Place_Name,
+                    doc.data().Description,
+                    doc.data().Category,
+                    doc.data().City,
+                    doc.data().Price,
+                    doc.data().Rating,
+                    doc.data().Coordinate,
+                    doc.data().Lat,
+                    doc.data().Long,
                 );
                 placesArray.push(tourism_place);
             });

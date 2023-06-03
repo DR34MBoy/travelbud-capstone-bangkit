@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const config = require('./config');
-const placeRoutes = require('./routes/place-routes');
+const placeRoutes = require('./routes/routes-all');
 
 const app = express();
 
