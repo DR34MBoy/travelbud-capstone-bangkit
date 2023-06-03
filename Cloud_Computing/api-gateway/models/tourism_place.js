@@ -1,6 +1,6 @@
 class Tourism_place {
-    constructor(Place_ID, Place_Name, Description, Category, City, Price, Rating, Coordinate, Lat, Long) {
-            this.Place_ID = Place_ID;
+    constructor(Place_Id, Place_Name, Description, Category, City, Price, Rating, Coordinate, Lat, Long) {
+            this.Place_Id = Place_Id;
             this.Place_Name = Place_Name;
             this.Description = Description;
             this.Category = Category;
