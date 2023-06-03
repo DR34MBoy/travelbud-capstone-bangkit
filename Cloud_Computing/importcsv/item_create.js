@@ -1,7 +1,7 @@
 const { Firestore } = require('@google-cloud/firestore');
 const path = require('path')
 const fs = require('fs')
-require('environment/dotenv').config();
+require('dotenv').config();
 
 const CREDENTIALS = JSON.parse(process.env.CREDENTIALS);
 
