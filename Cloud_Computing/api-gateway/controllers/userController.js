@@ -1,33 +1,26 @@
 'use strict';
 
 const firebase = require('../db');
-const Tourism_place = require('../models/user');
+const User = require('../models/user');
 const firestore = firebase.firestore();
 
-const getAllPlaces = async (req, res, next) => { // ini diubah ya ca
+const getAllUsers = async (req, res, next) => { 
     try {
-        const tourism_places = await firestore.collection('tourism_with_id');
-        const data = await tourism_places.get();
-        const placesArray = [];
+        const users = await firestore.collection('users');
+        const data = await users.get();
+        const usersArray = [];
         if(data.empty) {
             res.status(404).send('No student record found');
         }else {
             data.forEach(doc => {
-                const tourism_place = new Tourism_place(
-                    doc.data().Place_Id,
-                    doc.data().Place_Name,
-                    doc.data().Description,
-                    doc.data().Category,
-                    doc.data().City,
-                    doc.data().Price,
-                    doc.data().Rating,
-                    doc.data().Coordinate,
-                    doc.data().Lat,
-                    doc.data().Long,
+                const users = new User(
+                    doc.data().User_Id,
+                    doc.data().Location,
+                    doc.data().Age,
                 );
-                placesArray.push(tourism_place);
+                placesArray.push(users);
             });
-            res.send(placesArray);
+            res.send(usersArray);
         }
     } catch (error) {
         res.status(400).send(error.message);
@@ -50,6 +43,6 @@ const getUser = async (req, res, next) => {
 }
 
 module.exports = {
-    getAllPlaces, // ini juga diubah yaa
+    getAllUsers,
     getUser
 }

@@ -18,3 +18,8 @@ data_json = json.loads(response.read())
 # print(data_json[0])
 
 df = pd.DataFrame(data_json)
+
+print(df)
+
+
+
