@@ -10,7 +10,7 @@ const getAllUsers = async (req, res, next) => {
         const data = await users.get();
         const usersArray = [];
         if(data.empty) {
-            res.status(404).send('No student record found');
+            res.status(404).send('No users record found');
         }else {
             data.forEach(doc => {
                 const users = new User(
@@ -18,7 +18,7 @@ const getAllUsers = async (req, res, next) => {
                     doc.data().Location,
                     doc.data().Age,
                 );
-                placesArray.push(users);
+                usersArray.push(users);
             });
             res.send(usersArray);
         }

@@ -16,8 +16,8 @@ const MLtoFE = async (req, res, next) => {
         const input = req.body;
         const placesArray = [];
         for (let index = 0; index < input.length; index++) {
-            Place_ID = (input[index].Place_ID).toString()
-            const place = await firestore.collection('tourism_with_id').doc(Place_ID);
+            Place_Id = (input[index].Place_Id).toString();
+            const place = await firestore.collection('tourism_with_id').doc(Place_Id);
             const data = await place.get();
             placesArray.push(data.data());
         }

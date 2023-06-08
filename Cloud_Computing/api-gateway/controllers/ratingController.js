@@ -8,7 +8,7 @@ const getAllRatings = async (req, res, next) => {
         const data = await ratings.get();
         const ratingsArray = [];
         if(data.empty) {
-            res.status(404).send('No student record found');
+            res.status(404).send('No users rating record found');
         }else {
             data.forEach(doc => {
                 const ratings = new Tourism_rating(
@@ -31,7 +31,7 @@ const getRating = async (req, res, next) => {
         const rating = await firestore.collection('tourism_rating').doc(id);
         const data = await rating.get();
         if(!data.exists) {
-            res.status(404).send('User does not exist');
+            res.status(404).send('User rating not exist');
         }else {
             res.send(data.data());
         }

@@ -20,7 +20,7 @@ const getAllPlaces = async (req, res, next) => {
         const data = await tourism_places.get();
         const placesArray = [];
         if(data.empty) {
-            res.status(404).send('No student record found');
+            res.status(404).send('No places record found');
         }else {
             data.forEach(doc => {
                 const tourism_place = new Tourism_place(
@@ -50,7 +50,7 @@ const getPlace = async (req, res, next) => {
         const place = await firestore.collection('tourism_with_id').doc(id);
         const data = await place.get();
         if(!data.exists) {
-            res.status(404).send('Student with the given ID not found');
+            res.status(404).send('Place with the given ID not found');
         }else {
             res.send(data.data());
         }
