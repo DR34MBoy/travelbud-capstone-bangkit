@@ -1,25 +1,20 @@
-# import urllib library
 from urllib.request import urlopen
 import pandas as pd
-# import json
 import json
-# store the URL in url as
-# parameter for urlopen
-url = "http://localhost:8080/api/places"
 
-# store the response of URL
-response = urlopen(url)
-
-# storing the JSON response
-# from url in data
+url_1 = "http://localhost:8080/api/places"
+response = urlopen(url_1)
 data_json = json.loads(response.read())
+place = pd.DataFrame(data_json)
 
-# print the json response
-# print(data_json[0])
+url_2 = "http://localhost:8080/api/ratings"
+response = urlopen(url_2)
+data_json = json.loads(response.read())
+rating = pd.DataFrame(data_json)
 
-df = pd.DataFrame(data_json)
+print(place)
+print(rating)
 
-print(df)
 
 
 

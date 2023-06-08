@@ -1,0 +1,144 @@
+All Users
+Contoh Output
+[
+    {
+        "User_Id": 1,
+        "Location": "Semarang, Jawa Tengah",
+        "Age": 20
+    },
+    {
+        "User_Id": 10,
+        "Location": "Bekasi, Jawa Barat",
+        "Age": 39
+    },
+    ...
+]
+
+All Place
+Contoh Output
+[
+    {
+        "Place_Id": 1,
+        "Place_Name": "Monumen Nasional",
+        "Description": "Monumen Nasional atau yang populer disingkat dengan Monas atau Tugu Monas adalah monumen peringatan setinggi 132 meter (433 kaki) yang didirikan untuk mengenang perlawanan dan perjuangan rakyat Indonesia untuk merebut kemerdekaan dari pemerintahan kolonial Hindia Belanda. Pembangunan monumen ini dimulai pada tanggal 17 Agustus 1961 di bawah perintah presiden Soekarno dan dibuka untuk umum pada tanggal 12 Juli 1975. Tugu ini dimahkotai lidah api yang dilapisi lembaran emas yang melambangkan semangat perjuangan yang menyala-nyala. Monumen Nasional terletak tepat di tengah Lapangan Medan Merdeka, Jakarta Pusat.",
+        "Category": "Budaya",
+        "City": "Jakarta",
+        "Price": 20000,
+        "Rating": 4.6
+    },
+    {
+        "Place_Id": 10,
+        "Place_Name": "Pulau Tidung",
+        "Description": "Pulau Tidung adalah salah satu kelurahan di kecamatan Kepulauan Seribu Selatan, Kabupaten Kepulauan Seribu, Jakarta, Indonesia.",
+        "Category": "Bahari",
+        "City": "Jakarta",
+        "Price": 150000,
+        "Rating": 4.5
+    },
+    {
+        "Place_Id": 11,
+        "Place_Name": "Pulau Bidadari",
+        "Description": "Pulau Bidadari merupakan salah satu resor di Kabupaten Kepulauan Seribu, Jakarta. Sebelum bernama Pulau Bidadari, pulau ini memiliki dua nama yaitu Pulau Sakit dan Pulau Purmerend",
+        "Category": "Bahari",
+        "City": "Jakarta",
+        "Price": 5000,
+        "Rating": 4.6
+    },
+    {
+        "Place_Id": 12,
+        "Place_Name": "Pulau Pari",
+        "Description": "Pulau Pari adalah sebuah pulau yang terletak di Kepulauan Seribu di Daerah Khusus Ibukota Jakarta, Indonesia.\n",
+        "Category": "Bahari",
+        "City": "Jakarta",
+        "Price": 150000,
+        "Rating": 4
+    },
+    ...
+]
+
+All Ratings
+Contoh Output
+[
+    {
+        "User_Id": 1,
+        "Place_Id": 76,
+        "Place_Ratings": 2
+    },
+    {
+        "User_Id": 10,
+        "Place_Id": 77,
+        "Place_Ratings": 2
+    },
+    {
+        "User_Id": 100,
+        "Place_Id": 83,
+        "Place_Ratings": 2
+    },
+    ...
+]
+
+FE -> ML 
+Contoh Input
+{
+    "User_Id": 1,
+    "Price_Low": 0,
+    "Price_High": 50000,
+    "Category": "Budaya"
+}
+
+Contoh Output
+{
+    "User_Id": 1,
+    "Price_Low": 0,
+    "Price_High": 50000,
+    "Category": "Budaya"
+}
+
+ML -> FE
+Contoh Input
+[
+    {
+        "Place_Id": 1
+    },
+    {
+        "Place_Id": 10
+    },
+    {
+        "Place_Id": 2
+    }
+    ...
+]
+
+Contoh Output
+[
+    {
+        "Rating": 4.6,
+        "Price": 20000,
+        "Description": "Monumen Nasional atau yang populer disingkat dengan Monas atau Tugu Monas adalah monumen peringatan setinggi 132 meter (433 kaki) yang didirikan untuk mengenang perlawanan dan perjuangan rakyat Indonesia untuk merebut kemerdekaan dari pemerintahan kolonial Hindia Belanda. Pembangunan monumen ini dimulai pada tanggal 17 Agustus 1961 di bawah perintah presiden Soekarno dan dibuka untuk umum pada tanggal 12 Juli 1975. Tugu ini dimahkotai lidah api yang dilapisi lembaran emas yang melambangkan semangat perjuangan yang menyala-nyala. Monumen Nasional terletak tepat di tengah Lapangan Medan Merdeka, Jakarta Pusat.",
+        "isActive": true,
+        "Category": "Budaya",
+        "City": "Jakarta",
+        "Place_Name": "Monumen Nasional",
+        "Place_Id": 1
+    },
+    {
+        "Rating": 4.5,
+        "isActive": true,
+        "Place_Id": 10,
+        "Category": "Bahari",
+        "Place_Name": "Pulau Tidung",
+        "Description": "Pulau Tidung adalah salah satu kelurahan di kecamatan Kepulauan Seribu Selatan, Kabupaten Kepulauan Seribu, Jakarta, Indonesia.",
+        "Price": 150000,
+        "City": "Jakarta"
+    },
+    {
+        "Rating": 4.6,
+        "Price": 0,
+        "isActive": true,
+        "City": "Jakarta",
+        "Description": "Kota tua di Jakarta, yang juga bernama Kota Tua, berpusat di Alun-Alun Fatahillah, yaitu alun-alun yang ramai dengan pertunjukan rutin tarian tradisional. Museum Sejarah Jakarta adalah bangunan era Belanda dengan lukisan dan barang antik, sedangkan Museum Wayang memamerkan boneka kayu khas Jawa. Desa Glodok, atau Chinatown, terkenal dengan makanan kaki lima, seperti pangsit dan mi goreng. Di dekatnya, terdapat sekunar dan kapal penangkap ikan di pelabuhan Sunda Kelapa yang kuno",
+        "Place_Name": "Kota Tua",
+        "Place_Id": 2,
+        "Category": "Budaya"
+    }
+]
