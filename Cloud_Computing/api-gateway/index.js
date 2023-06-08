@@ -15,7 +15,8 @@ app.use(bodyParser.json());
 app.use('/api', placeRoutes.routes);
 
 
-// Aktifkan kalau localhost
+// Untuk localhost
 // app.listen(config.port, () => console.log('App is listening on url http://localhost:' + config.port));
 
-exports.api = cloud_func.https.onRequest(app) //aktifkan saja kalau mau deploy
+// Untuk deploy
+exports.api = cloud_func.https.region('asia-southeast2').onRequest(app)
