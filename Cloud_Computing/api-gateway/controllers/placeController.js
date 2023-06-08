@@ -31,9 +31,6 @@ const getAllPlaces = async (req, res, next) => {
                     doc.data().City,
                     doc.data().Price,
                     doc.data().Rating,
-                    doc.data().Coordinate,
-                    doc.data().Lat,
-                    doc.data().Long,
                 );
                 placesArray.push(tourism_place);
             });

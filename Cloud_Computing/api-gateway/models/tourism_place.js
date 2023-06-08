@@ -7,9 +7,6 @@ class Tourism_place {
             this.City = City;
             this.Price = Price;
             this.Rating = Rating;
-            this.Coordinates = Coordinate;
-            this.Lat = Lat;
-            this.Long = Long;
     }
 }
 
