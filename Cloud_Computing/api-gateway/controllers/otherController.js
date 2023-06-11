@@ -1,7 +1,7 @@
 const firebase = require('../ref-setup/db');
 const firestore = firebase.firestore();
 
-const FEtoML = async (req, res, next) => {
+const passData= async (req, res, next) => {
     try {
         const data = req.body;
         res.send(data);
@@ -78,7 +78,7 @@ const login = async (req, res, next) => {
 }
 
 module.exports = {
-    FEtoML,
+    passData,
     recommend,
     register,
     login

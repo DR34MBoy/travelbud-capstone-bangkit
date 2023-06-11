@@ -15,7 +15,7 @@ const {
 } = require('../controllers/ratingController');
 
 const {
-  FEtoML,
+  passData,
   recommend,
   register,
   login,
@@ -34,7 +34,8 @@ router.get('/user/:id', getUser);
 router.get('/ratings', getAllRatings)
 router.get('/rating/:id', getRating);
 
-router.post('/FE2ML', FEtoML)
+router.post('/recommendPass', passData)
+router.post('/search', passData)
 router.post('/recommend', recommend)
 router.post('/register', register)
 router.post('/login', login)
