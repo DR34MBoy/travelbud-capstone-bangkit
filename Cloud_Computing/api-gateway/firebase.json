@@ -1,7 +1,7 @@
 {
   "functions": [
     {
-      "source": ".",
+      "source": "./deploy-setup",
       "codebase": "default",
       "ignore": [
         "node_modules",

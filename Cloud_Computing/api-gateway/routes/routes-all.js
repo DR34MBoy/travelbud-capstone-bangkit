@@ -16,7 +16,9 @@ const {
 
 const {
   FEtoML,
-  MLtoFE
+  recommend,
+  register,
+  login,
 } = require('../controllers/otherController');
 
 const router = express.Router();
@@ -33,7 +35,10 @@ router.get('/ratings', getAllRatings)
 router.get('/rating/:id', getRating);
 
 router.post('/FE2ML', FEtoML)
-router.post('/ML2FE', MLtoFE)
+router.post('/recommend', recommend)
+router.post('/register', register)
+router.post('/login', login)
+
 
 module.exports = {
     routes: router

@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon index.js",
-    "start": "node index.js",
+    "test": "nodemon ./test-setup/index.js",
+    "start": "node ./deploy-setup/index.js",
     "deploy": "firebase deploy --only functions:api"
   },
   "engines": {

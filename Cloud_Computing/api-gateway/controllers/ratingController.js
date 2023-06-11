@@ -1,4 +1,4 @@
-const firebase = require('../db');
+const firebase = require('../ref-setup/db');
 const Tourism_rating = require('../models/tourism_rating');
 const firestore = firebase.firestore();
 

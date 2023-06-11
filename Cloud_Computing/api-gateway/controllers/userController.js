@@ -1,6 +1,6 @@
 'use strict';
 
-const firebase = require('../db');
+const firebase = require('../ref-setup/db');
 const User = require('../models/user');
 const firestore = firebase.firestore();
 
