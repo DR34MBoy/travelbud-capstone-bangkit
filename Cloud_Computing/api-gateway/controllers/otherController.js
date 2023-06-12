@@ -44,7 +44,7 @@ const register = async (req, res, next) => {
         }
         else {
             await firestore.collection('users_profile').doc((input.username).toString()).set(input);
-            await firestore.collection('users_profile').doc((input.username).toString()).update({User_Id: (id).toString()});
+            await firestore.collection('users_profile').doc((input.username).toString()).update({User_Id: id});
 
             id = id + 1;
             await firestore.collection('variables').doc('ID').update({num_ID: id});
