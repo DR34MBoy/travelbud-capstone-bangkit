@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="log_in">LOG IN</string>
+    <string name="gunung_bromo">Gunung Bromo</string>
 </resources>
