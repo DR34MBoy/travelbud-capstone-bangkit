@@ -15,14 +15,11 @@ rating = pd.DataFrame(data_json_2)
 
 app = Flask(__name__)
 
-@app.route('/api', methods=['POST'])
+@app.route('/search-', methods=['POST'])
 def post_data():
     data = request.get_json() 
     query_field = data.get('Place_Name')
-
     query_result = place[place['Place_Name'] == query_field]
-    
-
     queried_data = query_result.to_dict(orient='records')
 
     return jsonify(queried_data[0])

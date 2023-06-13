@@ -14,8 +14,19 @@ app = Flask(__name__)
 model = load_model('./model')
 print('test')
 #Load Dataset
-place = pd.read_csv('../Cloud_Computing/dataset/place.csv')
-rating = pd.read_csv('../Cloud_Computing/dataset/rating.csv')
+# place = pd.read_csv('../Cloud_Computing/dataset/place.csv')
+# rating = pd.read_csv('../Cloud_Computing/dataset/rating.csv')
+
+url_1 = "http://localhost:8080/api/places"
+response_1 = urlopen(url_1)
+data_json_1 = json.loads(response_1.read())
+place = pd.DataFrame(data_json_1)
+
+url_2 = "http://localhost:8080/api/ratings"
+response_2 = urlopen(url_2)
+data_json_2 = json.loads(response_2.read())
+rating = pd.DataFrame(data_json_2)
+
 df = rating.copy()
 place_df = place[['Place_Id','Place_Name','Category','Rating','Price']]
 
@@ -31,7 +42,7 @@ def dict_encoder(col, data=df):
   val_encoded_to_val = {i: x for i, x in enumerate(unique_val)}
   return val_to_val_encoded, val_encoded_to_val
 
-@app.route('/predict/<id>')
+@app.route('/predict/<id>', methods=['POST'])
 def predict(id):
     int_id = int(id)
     place_to_place_encoded, place_encoded_to_place = dict_encoder('Place_Id')
@@ -48,6 +59,7 @@ def predict(id):
     # user_place_array = np.hstack(([[user_encoder]] * len(place_not_visited), place_not_visited), dtype=np.int64)
     user_place_array = np.hstack((user_encoder_array,place_not_visited))
 
+    
     tipe = np.dtype(user_place_array[0][0])
     print(tipe)
     ratings = model.predict(user_place_array).flatten()
@@ -58,8 +70,19 @@ def predict(id):
     # json_place = json.dumps(recommended_place_ids)
     list_json = []
     for i in recommended_place_ids:
-       list_json.append({'Place_Id':i})
+       list_json.append({"Place_Id":i})
+    print(list_json)
     return jsonify(list_json)
+
+
+@app.route('/search', methods=['POST'])
+def post_data():
+    data = request.get_json() 
+    query_field = data.get('Place_Name')
+    query_result = place[place['Place_Name'] == query_field]
+    queried_data = query_result.to_dict(orient='records')
+
+    return jsonify(queried_data[0])
     
 
 if __name__ == '__main__':

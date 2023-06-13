@@ -20,7 +20,8 @@ const {
   recommend,
   register,
   login,
-  search
+  search,
+  recommend2
 } = require('../controllers/otherController');
 
 const router = express.Router();
@@ -39,6 +40,7 @@ router.post('/search', search)
 router.post('/recommend', recommend)
 router.post('/register', register)
 router.post('/login', login)
+router.post('/recommend2', recommend2)
 
 
 module.exports = {
