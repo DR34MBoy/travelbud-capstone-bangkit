@@ -1,18 +1,7 @@
 'use strict';
-
 const firebase = require('../ref-setup/db');
 const Tourism_place = require('../models/tourism_place');
 const firestore = firebase.firestore();
-
-// const addPlace = async (req, res, next) => {
-//     try {
-//         const data = req.body;
-//         await firestore.collection('tourism_with_id').doc((data.placeID).toString()).set(data);
-//         res.send('Record saved successfuly');
-//     } catch (error) {
-//         res.status(400).send(error.message);
-//     }
-// }
 
 const getAllPlaces = async (req, res, next) => {
     try {

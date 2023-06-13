@@ -1,3 +1,4 @@
+'use strict';
 const express = require('express');
 const {
   getAllPlaces,
@@ -19,11 +20,10 @@ const {
   recommend,
   register,
   login,
+  search
 } = require('../controllers/otherController');
 
 const router = express.Router();
-
-// router.post('/place', addPlace);
 
 router.get('/places', getAllPlaces);
 router.get('/place/:id', getPlace);
@@ -35,7 +35,7 @@ router.get('/ratings', getAllRatings)
 router.get('/rating/:id', getRating);
 
 router.post('/recommendPass', passData)
-router.post('/search', passData)
+router.post('/search', search)
 router.post('/recommend', recommend)
 router.post('/register', register)
 router.post('/login', login)

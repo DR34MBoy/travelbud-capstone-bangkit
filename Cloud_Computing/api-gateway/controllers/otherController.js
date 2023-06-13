@@ -1,5 +1,7 @@
+'use strict';
 const firebase = require('../ref-setup/db');
 const firestore = firebase.firestore();
+const axios = require('axios');
 
 const passData= async (req, res, next) => {
     try {
@@ -14,9 +16,10 @@ const passData= async (req, res, next) => {
 const recommend = async (req, res, next) => {
     try {
         const input = req.body;
+        const response = await axios.post('http://localhost:5000/api', input.User_Id);
         const placesArray = [];
         for (let index = 0; index < input.length; index++) {
-            Place_Id = (input[index].Place_Id).toString();
+            Place_Id = (response.Place_Id[index]).toString();
             const place = await firestore.collection('tourism_with_id').doc(Place_Id);
             const data = await place.get();
             placesArray.push(data.data());
@@ -44,7 +47,7 @@ const register = async (req, res, next) => {
         }
         else {
             await firestore.collection('users_profile').doc((input.username).toString()).set(input);
-            await firestore.collection('users_profile').doc((input.username).toString()).update({User_Id: (id).toString()});
+            await firestore.collection('users_profile').doc((input.username).toString()).update({User_Id: id});
 
             id = id + 1;
             await firestore.collection('variables').doc('ID').update({num_ID: id});
@@ -77,9 +80,26 @@ const login = async (req, res, next) => {
     }
 }
 
+const search = async (req, res, next) => {
+    try {
+        const inputData = req.body;
+      
+
+        const response = await axios.post('http://localhost:5000/api', inputData);
+    
+        const responseData = response.data;
+        
+        res.json(responseData);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+}
+
 module.exports = {
     passData,
     recommend,
     register,
-    login
+    login,
+    search
 }

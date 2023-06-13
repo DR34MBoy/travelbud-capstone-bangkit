@@ -12,6 +12,11 @@ app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use('/api', placeRoutes.routes);
+// Untuk localhost
+// app.use('/api', placeRoutes.routes);
 
-exports.api = cloud_func.https.region('asia-southeast2').onRequest(app)
+// Untuk deploy
+app.use(placeRoutes.routes);
+
+
+exports.api = cloud_func.region('asia-southeast2').https.onRequest(app)
