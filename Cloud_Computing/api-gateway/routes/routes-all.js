@@ -19,6 +19,7 @@ const {
   recommend,
   register,
   login,
+  test
 } = require('../controllers/otherController');
 
 const router = express.Router();
@@ -39,6 +40,8 @@ router.post('/search', passData)
 router.post('/recommend', recommend)
 router.post('/register', register)
 router.post('/login', login)
+
+router.get('/py-test', test)
 
 
 module.exports = {

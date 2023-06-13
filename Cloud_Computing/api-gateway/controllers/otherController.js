@@ -1,5 +1,6 @@
 const firebase = require('../ref-setup/db');
 const firestore = firebase.firestore();
+const axios = require('axios');
 
 const passData= async (req, res, next) => {
     try {
@@ -77,9 +78,25 @@ const login = async (req, res, next) => {
     }
 }
 
+const test = async (req, res, next) => {
+    try {
+        // Make a GET request to the Flask API
+        const response = await axios.get('http://localhost:5000/api');
+    
+        // Handle the response from the Flask API
+        // You can process the response data or send it back to the client
+        res.json(response.data);
+      } catch (error) {
+        // Handle any errors that occur during the request
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+      }
+}
+
 module.exports = {
     passData,
     recommend,
     register,
-    login
+    login,
+    test
 }
