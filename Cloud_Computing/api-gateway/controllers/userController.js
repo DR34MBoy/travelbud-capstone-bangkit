@@ -1,5 +1,4 @@
 'use strict';
-
 const firebase = require('../ref-setup/db');
 const User = require('../models/user');
 const firestore = firebase.firestore();
@@ -30,8 +29,8 @@ const getAllUsers = async (req, res, next) => {
 const getUser = async (req, res, next) => {
     try {
         const id = req.params.id;
-        const place = await firestore.collection('users').doc(id);
-        const data = await place.get();
+        const user = await firestore.collection('users_profile').doc(id);
+        const data = await user.get();
         if(!data.exists) {
             res.status(404).send('User does not exist');
         }else {

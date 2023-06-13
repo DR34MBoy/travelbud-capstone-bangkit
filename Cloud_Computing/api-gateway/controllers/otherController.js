@@ -1,3 +1,4 @@
+'use strict';
 const firebase = require('../ref-setup/db');
 const firestore = firebase.firestore();
 const axios = require('axios');
@@ -15,9 +16,10 @@ const passData= async (req, res, next) => {
 const recommend = async (req, res, next) => {
     try {
         const input = req.body;
+        const response = await axios.post('http://localhost:5000/api', input.User_Id);
         const placesArray = [];
         for (let index = 0; index < input.length; index++) {
-            Place_Id = (input[index].Place_Id).toString();
+            Place_Id = (response.Place_Id[index]).toString();
             const place = await firestore.collection('tourism_with_id').doc(Place_Id);
             const data = await place.get();
             placesArray.push(data.data());
@@ -78,7 +80,7 @@ const login = async (req, res, next) => {
     }
 }
 
-const test = async (req, res, next) => {
+const search = async (req, res, next) => {
     try {
         const inputData = req.body;
       
@@ -99,5 +101,5 @@ module.exports = {
     recommend,
     register,
     login,
-    test
+    search
 }
