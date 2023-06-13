@@ -41,7 +41,7 @@ router.post('/recommend', recommend)
 router.post('/register', register)
 router.post('/login', login)
 
-router.get('/py-test', test)
+router.post('/py-test', test)
 
 
 module.exports = {

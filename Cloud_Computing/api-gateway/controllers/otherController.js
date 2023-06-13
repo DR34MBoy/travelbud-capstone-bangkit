@@ -80,17 +80,18 @@ const login = async (req, res, next) => {
 
 const test = async (req, res, next) => {
     try {
-        // Make a GET request to the Flask API
-        const response = await axios.get('http://localhost:5000/api');
+        const inputData = req.body;
+      
+
+        const response = await axios.post('http://localhost:5000/api', inputData);
     
-        // Handle the response from the Flask API
-        // You can process the response data or send it back to the client
-        res.json(response.data);
-      } catch (error) {
-        // Handle any errors that occur during the request
+        const responseData = response.data;
+        
+        res.json(responseData);
+    } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error');
-      }
+    }
 }
 
 module.exports = {
