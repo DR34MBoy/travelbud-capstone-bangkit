@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 # Load model
 model = load_model('./model')
-
+print('test')
 #Load Dataset
 place = pd.read_csv('../Cloud_Computing/dataset/place.csv')
 rating = pd.read_csv('../Cloud_Computing/dataset/rating.csv')
@@ -40,18 +40,26 @@ def predict(id):
     place_not_visited = place_df[~place_df['Place_Id'].isin(place_visited_by_user.Place_Id.values)]['Place_Id'] 
     place_not_visited = list(set(place_not_visited).intersection(set(place_to_place_encoded.keys())))
  
-    place_not_visited = [[place_to_place_encoded.get(x)] for x in place_not_visited]
+    # place_not_visited = [[place_to_place_encoded.get(x)] for x in place_not_visited]
     user_encoder = user_to_user_encoded.get(int_id)
-    user_place_array = np.hstack(([[user_encoder]] * len(place_not_visited), place_not_visited))
-    print(user_encoder)
+    place_not_visited = np.array([[place_to_place_encoded.get(x)] for x in place_not_visited], dtype=np.int64)
+    user_encoder_list = [[user_encoder]] * len(place_not_visited)
+    user_encoder_array = np.array(user_encoder_list,dtype=np.int64)
+    # user_place_array = np.hstack(([[user_encoder]] * len(place_not_visited), place_not_visited), dtype=np.int64)
+    user_place_array = np.hstack((user_encoder_array,place_not_visited))
 
+    tipe = np.dtype(user_place_array[0][0])
+    print(tipe)
     ratings = model.predict(user_place_array).flatten()
     top_ratings_indices = ratings.argsort()[-7:][::-1]
     recommended_place_ids = [
         place_encoded_to_place.get(place_not_visited[x][0]) for x in top_ratings_indices
     ]
-
-    return jsonify({'placeId':recommended_place_ids})
+    # json_place = json.dumps(recommended_place_ids)
+    list_json = []
+    for i in recommended_place_ids:
+       list_json.append({'Place_Id':i})
+    return jsonify(list_json)
     
 
 if __name__ == '__main__':
