@@ -13,10 +13,8 @@ app = Flask(__name__)
 # Load model
 model = load_model('./model')
 print('test')
-#Load Dataset
-# place = pd.read_csv('../Cloud_Computing/dataset/place.csv')
-# rating = pd.read_csv('../Cloud_Computing/dataset/rating.csv')
 
+#Load Dataset
 url_1 = "http://localhost:8080/api/places"
 response_1 = urlopen(url_1)
 data_json_1 = json.loads(response_1.read())
@@ -32,16 +30,14 @@ place_df = place[['Place_Id','Place_Name','Category','Rating','Price']]
 
 def dict_encoder(col, data=df):
 
-  # Mengubah kolom suatu dataframe menjadi list tanpa nilai yang sama
-  unique_val = data[col].unique().tolist()
+    unique_val = data[col].unique().tolist()
 
-  # Melakukan encoding value kolom suatu dataframe ke angka
-  val_to_val_encoded = {x: i for i, x in enumerate(unique_val)}
+    val_to_val_encoded = {x: i for i, x in enumerate(unique_val)}
 
-  # Melakukan proses encoding angka ke value dari kolom suatu dataframe
-  val_encoded_to_val = {i: x for i, x in enumerate(unique_val)}
-  return val_to_val_encoded, val_encoded_to_val
+    val_encoded_to_val = {i: x for i, x in enumerate(unique_val)}
+    return val_to_val_encoded, val_encoded_to_val
 
+## Routes
 @app.route('/predict/<id>', methods=['POST'])
 def predict(id):
     int_id = int(id)
@@ -85,30 +81,20 @@ def post_data():
 
     return jsonify(queried_data[0])
 
+
 @app.route('/filter', methods=['POST'])
 def filter_data():
-    filter_data = request.get_json()  # Access the filter data from the request body
-    
-    # Extract filter values
-    rating_low = filter_data.get('rating_low')
-    rating_high = filter_data.get('rating_high')
-    category = filter_data.get('category')
+    filter_data = request.get_json()  
 
-    print(rating_low)
-    print(rating_high)
-    print(category)
+    price_low = filter_data.get('Price_low')
+    price_high = filter_data.get('Price_high')
+    category = filter_data.get('Category')
 
-    # Filter the dataset based on the specified criteria
-    # filtered_df = place[(place['Rating'] >= rating_low) &
-    #                  (place['Rating'] <= rating_high) &
-    #                  (place['Category'] == category)]
-    
-    # Create a list to store the filtered destinations
     filtered_destinations = []
     length = len(place)
 
     for i in range(0,length):
-        if place.Rating[i]>= rating_low and place.Rating[i] <= rating_high and place.Category[i] == category:
+        if place.Price[i]>= price_low and place.Price[i] <= price_high and place.Category[i] == category:
             Place_Id = float(place.Place_Id[i])
             Rating = float(place.Rating[i])
             Price = int(place.Price[i])
@@ -121,7 +107,6 @@ def filter_data():
                 'Price': Price,
                 'Rating': Rating
             }
-            print(destination)
             filtered_destinations.append(destination)
     
     return jsonify(filtered_destinations)

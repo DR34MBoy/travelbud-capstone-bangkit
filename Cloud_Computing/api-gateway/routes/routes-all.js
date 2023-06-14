@@ -16,12 +16,10 @@ const {
 } = require('../controllers/ratingController');
 
 const {
-  passData,
-  recommend,
   register,
   login,
+  recommend,
   search,
-  recommend2,
   filter
 } = require('../controllers/otherController');
 
@@ -36,13 +34,12 @@ router.get('/user/:id', getUser);
 router.get('/ratings', getAllRatings)
 router.get('/rating/:id', getRating);
 
-router.post('/search', search)
-router.post('/recommend', recommend)
-router.post('/recommend2', recommend2)
-router.post('/filter', filter)
-
 router.post('/register', register)
 router.post('/login', login)
+
+router.post('/search', search)
+router.post('/recommend', recommend)
+router.post('/filter', filter)
 
 module.exports = {
     routes: router

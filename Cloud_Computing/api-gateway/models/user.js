@@ -1,8 +1,8 @@
 class User {
-    constructor(User_Id, Location, Age) {
+    constructor(User_Id, Username, Password) {
             this.User_Id = User_Id;
-            this.Location = Location;
-            this.Age = Age;
+            this.Username = Username;
+            this.Password = Password;
     }
 }
 

@@ -5,7 +5,7 @@ const firestore = firebase.firestore();
 
 const getAllUsers = async (req, res, next) => { 
     try {
-        const users = await firestore.collection('users');
+        const users = await firestore.collection('users_profile');
         const data = await users.get();
         const usersArray = [];
         if(data.empty) {
@@ -14,8 +14,8 @@ const getAllUsers = async (req, res, next) => {
             data.forEach(doc => {
                 const users = new User(
                     doc.data().User_Id,
-                    doc.data().Location,
-                    doc.data().Age,
+                    doc.data().Username,
+                    doc.data().Password,
                 );
                 usersArray.push(users);
             });
