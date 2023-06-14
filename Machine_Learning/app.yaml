@@ -1,5 +1,5 @@
 runtime: python310
-entrypoint: gunicorn -b :$PORT main:app
+entrypoint: gunicorn -b :$PORT app:app
 
 instance_class: F4_1G
 
