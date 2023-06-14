@@ -56,7 +56,7 @@ const login = async (req, res, next) => {
 const recommend = async (req, res, next) => {
     try {
         const input = req.body;
-        const response = await axios.post('http://127.0.0.1:5000/predict/' + input.User_Id)
+        const response = await axios.post('https://travelbud-c23ps150-izjdbv7e4q-as.a.run.app/predict/' + input.User_Id)
         res.send(response.data);
     } catch (error) {
         res.status(400).send(error.message);
@@ -66,7 +66,7 @@ const recommend = async (req, res, next) => {
 const search = async (req, res, next) => {
     try {
         const inputData = req.body;
-        const response = await axios.post('http://localhost:5000/search', inputData)
+        const response = await axios.post('https://travelbud-c23ps150-izjdbv7e4q-as.a.run.app/search', inputData)
         const responseData = response.data;
         res.json(responseData);
     } catch (error) {
@@ -79,7 +79,7 @@ const filter = async (req, res, next) => {
     try {
         const inputFilter = req.body;
     
-        const response = await axios.post('http://localhost:5000/filter', inputFilter);
+        const response = await axios.post('https://travelbud-c23ps150-izjdbv7e4q-as.a.run.app/filter', inputFilter);
         const responseData = response.data;
         
         res.json(responseData);
