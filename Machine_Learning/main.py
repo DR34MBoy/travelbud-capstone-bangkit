@@ -38,6 +38,9 @@ def dict_encoder(col, data=df):
     return val_to_val_encoded, val_encoded_to_val
 
 ## Routes
+@app.route('/')
+
+
 @app.route('/predict/<id>', methods=['POST'])
 def predict(id):
     int_id = int(id)
