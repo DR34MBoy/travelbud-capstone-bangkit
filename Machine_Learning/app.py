@@ -15,12 +15,12 @@ model = load_model('./model')
 print('test')
 
 #Load Dataset
-url_1 = "http://localhost:8080/api/places"
+url_1 = "https://asia-southeast2-travelbud-c23ps150.cloudfunctions.net/api/places"
 response_1 = urlopen(url_1)
 data_json_1 = json.loads(response_1.read())
 place = pd.DataFrame(data_json_1)
 
-url_2 = "http://localhost:8080/api/ratings"
+url_2 = "https://asia-southeast2-travelbud-c23ps150.cloudfunctions.net/api/ratings"
 response_2 = urlopen(url_2)
 data_json_2 = json.loads(response_2.read())
 rating = pd.DataFrame(data_json_2)
