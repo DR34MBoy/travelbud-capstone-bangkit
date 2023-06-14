@@ -83,7 +83,47 @@ def post_data():
     queried_data = query_result.to_dict(orient='records')
 
     return jsonify(queried_data[0])
+
+@app.route('/filter', methods=['POST'])
+def filter_data():
+    filter_data = request.get_json()  # Access the filter data from the request body
     
+    # Extract filter values
+    rating_low = filter_data.get('rating_low')
+    rating_high = filter_data.get('rating_high')
+    category = filter_data.get('category')
+
+    print(rating_low)
+    print(rating_high)
+    print(category)
+
+    # Filter the dataset based on the specified criteria
+    # filtered_df = place[(place['Rating'] >= rating_low) &
+    #                  (place['Rating'] <= rating_high) &
+    #                  (place['Category'] == category)]
+    
+    # Create a list to store the filtered destinations
+    filtered_destinations = []
+    length = len(place)
+
+    for i in range(0,length):
+        if place.Rating[i]>= rating_low and place.Rating[i] <= rating_high and place.Category[i] == category:
+            Place_Id = float(place.Place_Id[i])
+            Rating = float(place.Rating[i])
+            Price = int(place.Price[i])
+            destination = {
+                'Place_Id': Place_Id,
+                'Place_Name': place.Place_Name[i],
+                'City': place.City[i],
+                'Category': place.Category[i],
+                'Description': place.Description[i],
+                'Price': Price,
+                'Rating': Rating
+            }
+            print(destination)
+            filtered_destinations.append(destination)
+    
+    return jsonify(filtered_destinations)
 
 if __name__ == '__main__':
     app.run(debug=True)
