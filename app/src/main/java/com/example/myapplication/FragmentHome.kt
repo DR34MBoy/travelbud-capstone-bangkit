@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.myapplication.databinding.FragmentHomeBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +27,6 @@ class FragmentHome : Fragment() {
     companion object {
         fun getInstance() : FragmentHome = FragmentHome()
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -32,6 +34,12 @@ class FragmentHome : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
     }
+
+    private lateinit var destination : HomeViewModel
+
+    private var _binding : FragmentHomeBinding? = null
+    private lateinit var adapter:WisataAdapter
+    private val binding get() = _binding ?: throw IllegalStateException("View binding is null")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,5 +49,30 @@ class FragmentHome : Fragment() {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        _binding = FragmentHomeBinding.bind(view)
+
+        destination = ViewModelProvider(this).get(HomeViewModel::class.java)
+        destination.getDestinations()
+        listDestination()
+
+
+    }
+    private var onItemClickCallback: OnItemClickCallback? = null
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+
+    private fun listDestination() {
+        destination.destination.observe(viewLifecycleOwner) {
+            adapter = WisataAdapter(it)
+            binding.rvListHome.adapter = adapter
+            binding.rvListHome.layoutManager = LinearLayoutManager(requireActivity())
+        }
+    }
+    interface OnItemClickCallback {
+        fun onItemClicked(data: DestinationResponse)
+    }
 
 }
