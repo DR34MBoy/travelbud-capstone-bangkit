@@ -19,7 +19,7 @@ class BottomNavigation : AppCompatActivity() {
         binding = ActivityBottomNavigationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navView: BottomNavigationView = binding.navView
+        val navView: BottomNavigationView = binding.bottomView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_bottom_navigation)
         // Passing each menu ID as a set of Ids because each

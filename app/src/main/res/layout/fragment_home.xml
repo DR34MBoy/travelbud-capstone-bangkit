@@ -23,6 +23,11 @@
         android:layout_marginTop="18dp"
         android:text="For You"
         app:layout_constraintTop_toBottomOf="@id/recommend"/>
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="110dp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

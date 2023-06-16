@@ -8,4 +8,5 @@ class Wisata : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.wisatalist)
     }
+
 }
